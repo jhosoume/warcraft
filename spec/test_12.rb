@@ -15,21 +15,21 @@ describe Unit do
     end  
   end 
 
-    describe "#attack!" do
-      it "does deal damage when dead" do
-        enemy = Footman.new
-        expect(enemy).to receive(:damage).with(0)
-        @unit.attack!(enemy) 
-        # expect{ @unit.attack!(enemy) }.to raise_error ArgumentError => Better not to raise an error because it crashes the whole program
-      end
-
-    describe "#damage" do
-      it "does not receive damage when dead" do
-        enemy = Footman.new
-        expect(@unit).to receive(:damage).with(0)
-        enemy.attack!(@unit)
+  describe "#attack!" do
+    it "does deal damage when dead" do
+      enemy = Footman.new
+      expect(enemy).to receive(:damage).with(0)
+      @unit.attack!(enemy) 
+      # expect{ @unit.attack!(enemy) }.to raise_error ArgumentError => Better not to raise an error because it crashes the whole program
     end
   end
 
+  describe "#damage" do
+    it "does not receive damage when dead" do
+      enemy = Footman.new
+      expect(@unit).to receive(:damage).with(0)
+      enemy.attack!(@unit)
+    end
+  end
 
 end

@@ -11,7 +11,7 @@ describe Barracks do
     expect(@barrack.health_points).to eq(500)    
   end
 
-  decribe "#damage" do
+  describe "#damage" do
     it "only receives Fixnum" do
       expect { @barrack.damage(1.2) }.to raise_error TypeError 
     end
