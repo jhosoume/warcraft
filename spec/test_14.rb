@@ -15,11 +15,21 @@ describe SiegeEngine do
 
   describe "#attack!" do
     it "is ineffective against other units" do
-      enemy = Unite.new(10, 10)
+      enemy = Unit.new(10, 10)
       expect(enemy).to receive(:damage).with(0)
+      @siege.attack!(enemy)
     end
-  end
 
-  describe "damage" do
+    it "does doubled damage to Barracks" do
+      enemy = Barracks.new
+      expect(enemy).to receive(:damage).with(100)
+      @siege.attack!(enemy)
+    end
+
+    it "does normal damage to other SiegeEngine Units" do
+      enemy = SiegeEngine.new
+      expect(enemy).to receive(:damage).with(50)
+      @siege.attack!(enemy)
+    end
   end
 end
