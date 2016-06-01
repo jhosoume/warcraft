@@ -1,8 +1,10 @@
 class Barracks
-  attr_accessor :gold, :food
+  attr_accessor :gold, :food, :lumber, :health_points
   def initialize
     @gold = 1000
     @food = 80
+    @lumber = 500
+    @health_points = 500
   end
 
   def can_train_footman?
@@ -31,5 +33,10 @@ class Barracks
     else
       nil
     end
+  end
+
+  def damage(amount)
+    raise TypeError unless amount.is_a?(Fixnum)
+    @health_points -= amount
   end
 end
