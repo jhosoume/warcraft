@@ -1,5 +1,5 @@
 class Barracks
-  attr_accessor :gold, :food, :lumber, :health_points
+  attr_reader :gold, :food, :lumber, :health_points
   def initialize
     @gold = 1000
     @food = 80
@@ -15,11 +15,26 @@ class Barracks
     gold >= 90 && food >= 5 
   end
 
+  def can_train_siege?
+    gold >= 200 && food >= 3 && lumber >= 60 
+  end
+
   def train_footman
     if can_train_footman?
       @gold -= 135
       @food -= 2
       Footman.new
+    else
+      nil
+    end
+  end
+
+  def train_siege
+    if can_train_siege?
+      @gold -= 200
+      @food -= 3
+      @lumber -= 60
+      SiegeEngine.new
     else
       nil
     end
@@ -38,5 +53,9 @@ class Barracks
   def damage(amount)
     raise TypeError unless amount.is_a?(Fixnum)
     @health_points -= amount
+  end
+
+  def destroyed?
+    health_points <= 0
   end
 end

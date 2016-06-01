@@ -8,10 +8,10 @@ class Footman < Unit
   end
 
   def attack!(enemy)
-    if enemy.is_a?(Barracks)
+    if enemy.is_a?(Barracks) && !enemy.destroyed?
       enemy.damage((attack_power/2.0).ceil) 
     else
-    enemy.damage(attack_power)
+      super(enemy)
     end
   end
 
