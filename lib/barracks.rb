@@ -1,10 +1,10 @@
-class Barracks
-  attr_reader :gold, :food, :lumber, :health_points
+class Barracks < Unit
+  attr_reader :gold, :food, :lumber
   def initialize
     @gold = 1000
     @food = 80
     @lumber = 500
-    @health_points = 500
+    super(500, 0)
   end
 
   def can_train_footman?
@@ -24,8 +24,6 @@ class Barracks
       @gold -= 135
       @food -= 2
       Footman.new
-    else
-      nil
     end
   end
 
@@ -35,8 +33,6 @@ class Barracks
       @food -= 3
       @lumber -= 60
       SiegeEngine.new
-    else
-      nil
     end
   end
 
@@ -45,17 +41,7 @@ class Barracks
       @gold -= 90
       @food -= 5
       Peasant.new
-    else
-      nil
     end
   end
 
-  def damage(amount)
-    raise TypeError unless amount.is_a?(Fixnum)
-    @health_points -= amount
-  end
-
-  def destroyed?
-    health_points <= 0
-  end
 end

@@ -21,7 +21,7 @@ describe Barracks do
     end
     it "is damaged by half from Footman" do
       enemy = Footman.new    
-      expect(@barrack).to receive(:damage).with(5)
+      expect(@barrack).to receive(:damage).with((enemy.attack_power/2.0).ceil)
       enemy.attack!(@barrack)
     end
 

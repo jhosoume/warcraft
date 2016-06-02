@@ -31,5 +31,5 @@ describe Unit do
       enemy.attack!(@unit)
     end
   end
-
+  
 end

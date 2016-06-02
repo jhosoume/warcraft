@@ -4,9 +4,9 @@ class SiegeEngine < Unit
   end
 
   def attack!(enemy)
-    if enemy.is_a?(Barracks) && !enemy.destroyed?
-      enemy.damage(2*attack_power) 
-    elsif enemy.is_a?(SiegeEngine) && !enemy.dead?
+    if enemy.is_a?(Barracks) && can_attack?(enemy)
+      enemy.damage(2 * attack_power) 
+    elsif enemy.is_a?(SiegeEngine) 
       super(enemy)
     else
       enemy.damage(0) 
